@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>...</title>
+  <style>
+    :root{
+      --bg:#07070b;
+      --fog:#0f1020;
+      --text:#e9e9f3;
+      --muted:#a8a8c7;
+      --accent:#ff3b7a;
+      --accent2:#7c5cff;
+      --card: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.12);
+      --shadow: 0 24px 80px rgba(0,0,0,0.65);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow:hidden;
+    
+      /* Your face background */
+      background: url("bg.jpg") center/cover no-repeat fixed;
+    }
+    
+    /* Dark + ominous overlay so text is readable */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(900px 600px at 30% 20%, rgba(124,92,255,0.22), transparent 55%),
+        radial-gradient(1000px 700px at 70% 10%, rgba(255,59,122,0.18), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.78));
+      pointer-events:none;
+      z-index:0;
+    }
+    
+    /* Optional: blur + zoom the background a little for cinematic vibe */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:-20px;
+      background: url("bg.jpg") center/cover no-repeat;
+      filter: blur(10px) brightness(0.7);
+      transform: scale(1.08);
+      pointer-events:none;
+      z-index:-1;
+      opacity:0.55;
+    }
+
+
+    /* subtle moving fog */
+    .fog{
+      position:fixed; inset:-40%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.05), transparent 60%),
+        radial-gradient(circle at 40% 75%, rgba(255,255,255,0.05), transparent 60%);
+      filter: blur(18px);
+      animation: drift 14s ease-in-out infinite alternate;
+      pointer-events:none;
+      opacity:0.9;
+    }
+    @keyframes drift{
+      from{ transform: translate3d(-2%, -1%, 0) scale(1.05); }
+      to{ transform: translate3d(2%, 1%, 0) scale(1.10); }
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding: 24px;
+    }
+
+    .card{
+      width:min(640px, 100%);
+      padding: 28px 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(600px 250px at 50% 0%, rgba(255,59,122,0.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(255,59,122,0.25);
+    }
+
+    h1{
+      margin: 14px 0 8px;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -0.02em;
+      line-height:1.08;
+    }
+    p{
+      margin:0 auto;
+      max-width: 50ch;
+      color: var(--muted);
+      line-height:1.6;
+      font-size: 15px;
+    }
+
+    .buttons{
+      position:relative;
+      margin-top: 18px;
+      height: 120px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, filter .15s ease;
+      user-select:none;
+      min-width: 132px;
+      letter-spacing: 0.02em;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 16px 42px rgba(0,0,0,0.35);
+    }
+
+    .btn.yes{
+      border:none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 18px 52px rgba(255,59,122,0.18);
+    }
+    .btn.yes:hover{ filter: brightness(1.06); }
+
+    .btn.no{
+      position:relative;
+    }
+
+    .shake{
+      animation: shake 250ms ease-in-out;
+    }
+    @keyframes shake{
+      0%{ transform: translateX(0); }
+      25%{ transform: translateX(-6px); }
+      50%{ transform: translateX(6px); }
+      75%{ transform: translateX(-4px); }
+      100%{ transform: translateX(0); }
+    }
+
+    .hint{
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: rgba(168,168,199,0.85);
+    }
+
+    .glowline{
+      margin: 16px auto 0;
+      width: min(420px, 86%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,59,122,0.35), rgba(124,92,255,0.35), transparent);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fog" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="tag"><span class="dot"></span><span>one question…</span></div>
+      <h1>Will you be my Valentine?</h1>
+      <p>Choose carefully. Your answer may have… consequences.</p>
+
+      <div class="glowline"></div>
+
+      <div class="buttons">
+        <button class="btn yes" id="yesBtn" type="button">YES 💗</button>
+        <button class="btn no" id="noBtn" type="button">NO 😶</button>
+      </div>
+
+      <div class="hint">If you click “NO”, don’t say I didn’t warn you.</div>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn  = document.getElementById("noBtn");
+
+    // Boo sound using WebAudio (no file needed)
+    function boo(){
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioCtx();
+
+      const now = ctx.currentTime;
+
+      // low "ghost" tone
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(180, now);
+      osc.frequency.exponentialRampToValueAtTime(80, now + 0.55);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.35, now + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.75);
+
+      // airy noise burst (whisper)
+      const bufferSize = ctx.sampleRate * 0.35;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const noiseFilter = ctx.createBiquadFilter();
+      noiseFilter.type = "bandpass";
+      noiseFilter.frequency.setValueAtTime(600, now);
+
+      const ng = ctx.createGain();
+      ng.gain.setValueAtTime(0.0001, now);
+      ng.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+      ng.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+
+      noise.connect(noiseFilter).connect(ng).connect(ctx.destination);
+      noise.start(now);
+      noise.stop(now + 0.36);
+
+      // close context a bit later
+      setTimeout(() => ctx.close(), 900);
+    }
+
+    let scale = 1;
+
+    noBtn.addEventListener("click", () => {
+      boo();
+
+      // Make YES bigger each time
+      scale = Math.min(scale + 0.18, 2.2);
+      yesBtn.style.transform = `scale(${scale})`;
+
+      // Add a little shake + move NO slightly
+      noBtn.classList.remove("shake");
+      void noBtn.offsetWidth; // restart animation
+      noBtn.classList.add("shake");
+
+      const dx = (Math.random() * 120 - 60);
+      const dy = (Math.random() * 40 - 20);
+      noBtn.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      // Redirect to your A–Z page
+      window.location.href = "reasons.html";
+    });
+  </script>
+</body>
+</html>
