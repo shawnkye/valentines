@@ -220,8 +220,19 @@
       <div class="hint">If you click “NO”, don’t say I didn’t warn you.</div>
     </div>
   </div>
+  
+    <audio id="booSound" preload="auto">
+    <source src="boo.m4a" type="audio/mp4">
+  </audio>
 
+  <audio id="yaySound" preload="auto">
+    <source src="yay.m4a" type="audio/mp4">
+  </audio>
+  
   <script>
+    const booSound = document.getElementById("booSound");
+    const yaySound = document.getElementById("yaySound");
+
     const yesBtn = document.getElementById("yesBtn");
     const noBtn  = document.getElementById("noBtn");
 
@@ -273,27 +284,42 @@
 
     let scale = 1;
 
-    noBtn.addEventListener("click", () => {
-      boo();
+    noBtn.addEventListener("click", async () => {
+  try {
+    booSound.currentTime = 0;
+    await booSound.play();
+  } catch (e) {
+    // if autoplay restrictions block it, it's okay — user can click again
+  }
 
-      // Make YES bigger each time
-      scale = Math.min(scale + 0.18, 2.2);
-      yesBtn.style.transform = `scale(${scale})`;
+  // Make YES bigger each time
+  scale = Math.min(scale + 0.18, 2.2);
+  yesBtn.style.transform = `scale(${scale})`;
 
-      // Add a little shake + move NO slightly
-      noBtn.classList.remove("shake");
-      void noBtn.offsetWidth; // restart animation
-      noBtn.classList.add("shake");
+  // shake + move NO slightly
+  noBtn.classList.remove("shake");
+  void noBtn.offsetWidth;
+  noBtn.classList.add("shake");
 
-      const dx = (Math.random() * 120 - 60);
-      const dy = (Math.random() * 40 - 20);
-      noBtn.style.transform = `translate(${dx}px, ${dy}px)`;
+  const dx = (Math.random() * 120 - 60);
+  const dy = (Math.random() * 40 - 20);
+  noBtn.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+
+  yesBtn.addEventListener("click", async () => {
+      // Play celebration sound first
+      try {
+        yaySound.currentTime = 0;
+        await yaySound.play();
+      } catch (e) {}
+    
+      // Small delay so she hears it
+      setTimeout(() => {
+        window.location.href = "reasons.html";
+      }, 650);
     });
 
-    yesBtn.addEventListener("click", () => {
-      // Redirect to your A–Z page
-      window.location.href = "reasons.html";
-    });
+
   </script>
 </body>
 </html>
