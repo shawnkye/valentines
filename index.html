@@ -307,17 +307,33 @@
   });
 
   yesBtn.addEventListener("click", async () => {
-      // Play celebration sound first
-      try {
-        yaySound.currentTime = 0;
-        await yaySound.play();
-      } catch (e) {}
-    
-      // Small delay so she hears it
-      setTimeout(() => {
-        window.location.href = "reasons.html";
-      }, 650);
+  // disable buttons so she can’t spam click
+  yesBtn.disabled = true;
+  noBtn.disabled = true;
+  yesBtn.style.cursor = "default";
+  noBtn.style.cursor = "default";
+
+  try {
+    yaySound.currentTime = 0;
+
+    // start playing
+    await yaySound.play();
+
+    // wait until the audio finishes
+    await new Promise((resolve) => {
+      // if it ends naturally
+      yaySound.onended = () => resolve();
+
+      // fallback: if audio can't play or ends instantly
+      setTimeout(resolve, 4000);
     });
+
+  } catch (e) {
+    // if it fails, just continue
+  }
+
+  window.location.href = "reasons.html";
+});
 
 
   </script>
