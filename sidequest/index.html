@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A–Z Reasons I Love You 💗</title>
+
+  <!-- Optional (online) fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#fff1f7;
+      --bg2:#f3f7ff;
+      --card:#ffffffcc;
+      --stroke:#ffffff80;
+      --text:#1f2330;
+      --muted:#6a6f82;
+      --accent:#ff4d8d;
+      --accent2:#7c5cff;
+      --shadow: 0 18px 50px rgba(20, 20, 40, 0.12);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 15% 20%, rgba(255,77,141,0.18), transparent 50%),
+        radial-gradient(1000px 700px at 85% 10%, rgba(124,92,255,0.16), transparent 55%),
+        linear-gradient(145deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* Floating hearts background */
+    .hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
+    }
+    .heart{
+      position:absolute;
+      bottom:-60px;
+      width:18px;
+      height:18px;
+      transform: rotate(45deg);
+      opacity:0.18;
+      animation: floatUp linear infinite;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0) 55%),
+                  linear-gradient(135deg, rgba(255,77,141,0.9), rgba(124,92,255,0.65));
+      border-radius:4px;
+    }
+    .heart::before, .heart::after{
+      content:"";
+      position:absolute;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background: inherit;
+    }
+    .heart::before{ left:-9px; top:0; }
+    .heart::after{ left:0; top:-9px; }
+    @keyframes floatUp{
+      from{ transform: translateY(0) rotate(45deg); }
+      to{ transform: translateY(-120vh) rotate(45deg); }
+    }
+
+    /* Progress bar */
+    .progress{
+      position:fixed;
+      top:0; left:0;
+      width:100%;
+      height:4px;
+      background: rgba(255,255,255,0.35);
+      z-index:10;
+      backdrop-filter: blur(10px);
+    }
+    .progress > span{
+      display:block;
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 0 999px 999px 0;
+      box-shadow: 0 6px 20px rgba(255,77,141,0.35);
+    }
+
+    header{
+      position:relative;
+      z-index:2;
+      padding: 64px 18px 22px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .hero{
+      display:grid;
+      gap:14px;
+      padding: 22px 20px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.42));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .topRow{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      width:fit-content;
+      padding: 8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.6);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 6px 18px rgba(255,77,141,0.35);
+    }
+
+    h1{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 15.5px;
+      line-height: 1.65;
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 4px;
+      align-items:center;
+    }
+    .btn{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,0.6);
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 600;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px rgba(20,20,40,0.12);
+      background: rgba(255,255,255,0.75);
+    }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      box-shadow: 0 16px 40px rgba(255,77,141,0.24);
+    }
+
+    /* Photo card */
+    .photoCard{
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(14px);
+  justify-items: center;
+  text-align: center;
+}
+
+/* 5 photos next to each other */
+.photoRow{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+/* The photo tile */
+.photo{
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* square tiles without fixed px height */
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 12px 32px rgba(20,20,40,0.12);
+  background: linear-gradient(135deg, rgba(255,77,141,0.18), rgba(124,92,255,0.16));
+}
+
+.photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .photoText b{ display:block; }
+    .photoText{
+      color: var(--muted);
+      line-height:1.5;
+      font-size:14.5px;
+    }
+    .photoText code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: rgba(255,255,255,0.7);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border:1px solid rgba(255,255,255,0.7);
+      color: var(--text);
+    }
+
+    main{
+      position:relative;
+      z-index:2;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 10px 18px 70px;
+    }
+
+    /* Grid of letters */
+    .lettersGrid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    /* Envelope tile */
+    .tile{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(20, 20, 40, 0.10);
+      overflow:hidden;
+      transform: translateY(14px);
+      opacity: 0;
+      transition: transform 600ms cubic-bezier(.2,.8,.2,1), opacity 600ms ease;
+    }
+    .tile.reveal{ transform: translateY(0); opacity: 1; }
+
+    @media (min-width: 720px){ .tile{ grid-column: span 4; } }
+    @media (min-width: 980px){ .tile{ grid-column: span 3; } }
+
+    /* The "closed" state button */
+    .tileBtn{
+      width:100%;
+      border:0;
+      background: transparent;
+      padding: 0;
+      cursor:pointer;
+      text-align:left;
+      color: inherit;
+    }
+    .tileTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 14px 10px;
+      gap:10px;
+    }
+    .letterPill{
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(135deg, rgba(255,77,141,0.92), rgba(124,92,255,0.78));
+      box-shadow: 0 12px 26px rgba(124,92,255,0.18);
+      letter-spacing: 0.02em;
+      flex:0 0 auto;
+    }
+    .hint{
+      color: var(--muted);
+      font-size: 12.5px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .spark{
+      width: 10px; height:10px; border-radius:50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 6px 16px rgba(255,77,141,0.25);
+    }
+
+    /* Envelope animation area */
+    .envelope{
+      position:relative;
+      height: 74px;
+      margin: 0 14px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.7);
+      overflow:hidden;
+      box-shadow: 0 12px 26px rgba(20,20,40,0.08) inset;
+    }
+    .envBottom{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(135deg, rgba(255,77,141,0.20), rgba(124,92,255,0.16));
+    }
+    /* flap */
+    .flap{
+      position:absolute;
+      top:0; left:0; right:0;
+      height: 100%;
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition: transform 520ms cubic-bezier(.2,.9,.2,1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.0)),
+        linear-gradient(135deg, rgba(255,77,141,0.22), rgba(124,92,255,0.18));
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
+      opacity: 0.95;
+      filter: drop-shadow(0 10px 18px rgba(20,20,40,0.10));
+    }
+    /* letter that slides up */
+    .paper{
+      position:absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(255,255,255,0.9);
+      transform: translateY(34px);
+      transition: transform 520ms cubic-bezier(.2,.9,.2,1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .paper::before{
+      content:"❤";
+      margin-right: 8px;
+      opacity: 0.8;
+    }
+
+    /* Open state */
+    .tile.open .flap{ transform: rotateX(165deg); }
+    .tile.open .paper{ transform: translateY(0px); }
+
+    /* Hidden content (the reason) */
+    .reason{
+      max-height: 0;
+      overflow:hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition:
+        max-height 520ms cubic-bezier(.2,.9,.2,1),
+        opacity 420ms ease,
+        transform 420ms ease;
+      padding: 0 14px;
+    }
+    .tile.open .reason{
+      max-height: 220px;
+      opacity: 1;
+      transform: translateY(0);
+      padding-bottom: 14px;
+    }
+    .reason h3{
+      margin: 2px 0 6px;
+      font-size: 15.5px;
+      letter-spacing: -0.01em;
+    }
+    .reason p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14.5px;
+    }
+
+    /* Footer */
+    footer{
+      position:relative;
+      z-index:2;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 18px 50px;
+      color: var(--muted);
+      text-align:center;
+    }
+    .endCard{
+      margin-top: 14px;
+      padding: 18px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+    .endTitle{
+      font-family:"Playfair Display", serif;
+      font-size: 22px;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+    .endText{ margin:0; line-height: 1.7; }
+
+    /* Accessibility focus */
+    .tileBtn:focus-visible{
+      outline: 3px solid rgba(255,77,141,0.35);
+      outline-offset: 4px;
+      border-radius: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress"><span id="bar"></span></div>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+
+  <header>
+    <div class="hero">
+      <div class="topRow">
+        <div class="badge"><span class="dot"></span><span>A–Z letters (tap to open 💌)</span></div>
+        <div class="ctaRow">
+          <button class="btn primary" id="openAllBtn">Open all ✨</button>
+          <button class="btn" id="closeAllBtn">Close all</button>
+        </div>
+      </div>
+
+      <h1>26 Reasons I Love Tan Charlotte💗</h1>
+      <p class="sub">
+
+      </p>
+
+      <!-- Your photo: put your image file in the SAME folder as this HTML and name it "me.jpg" -->
+      <div class="photoCard">
+        <div class="photoRow">
+          <div class="photo"><img src="photo1.jpg" alt="Photo 1"></div>
+          <div class="photo"><img src="photo2.jpeg" alt="Photo 2"></div>
+          <div class="photo"><img src="photo3.jpg" alt="Photo 3"></div>
+          <div class="photo"><img src="photo4.jpg" alt="Photo 4"></div>
+          <div class="photo"><img src="photo5.jpg" alt="Photo 5"></div>
+        </div>
+      
+        <div class="photoText">
+          <b>Since you always ask i made a website so you can refer💗</b><br>
+        
+        </div>
+      </div>
+      
+    
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="lettersGrid" id="grid">
+
+      <!-- A -->
+      <article class="tile" data-letter="A">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">A</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Always makes me feel safe</h3>
+          <p>The way you show up—calm, steady, and caring—makes everything feel okay.</p>
+        </div>
+      </article>
+
+      <!-- B -->
+      <article class="tile" data-letter="B">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">B</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Brightens my day</h3>
+          <p>Even a small message from you can turn a normal day into a good one.</p>
+        </div>
+      </article>
+
+      <!-- C -->
+      <article class="tile" data-letter="C">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">C</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Cares in the little ways</h3>
+          <p>It’s the tiny details you remember that mean the most to me.</p>
+        </div>
+      </article>
+
+      <!-- D -->
+      <article class="tile" data-letter="D">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">D</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Dreams big</h3>
+          <p>I love how you have goals and hopes—you inspire me to aim higher too.</p>
+        </div>
+      </article>
+
+      <!-- E -->
+      <article class="tile" data-letter="E">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">E</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Empathy that feels real</h3>
+          <p>You understand people deeply, and you make them feel seen.</p>
+        </div>
+      </article>
+
+      <!-- F -->
+      <article class="tile" data-letter="F">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">F</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Fun to be around</h3>
+          <p>No matter what we’re doing, you make it feel lighter and happier.</p>
+        </div>
+      </article>
+
+      <!-- G -->
+      <article class="tile" data-letter="G">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">G</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Genuine</h3>
+          <p>You’re not trying to be anyone else. You’re just you—and that’s perfect.</p>
+        </div>
+      </article>
+
+      <!-- H -->
+      <article class="tile" data-letter="H">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">H</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Has the kindest heart</h3>
+          <p>Your kindness shows in how you talk, listen, and treat people.</p>
+        </div>
+      </article>
+
+      <!-- I -->
+      <article class="tile" data-letter="I">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">I</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Inspires me</h3>
+          <p>You make me want to be better—not out of pressure, but out of love.</p>
+        </div>
+      </article>
+
+      <!-- J -->
+      <article class="tile" data-letter="J">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">J</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Just feels right</h3>
+          <p>Being with you feels natural, like I’m exactly where I’m meant to be.</p>
+        </div>
+      </article>
+
+      <!-- K -->
+      <article class="tile" data-letter="K">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">K</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Keeps me grounded</h3>
+          <p>When things get chaotic, you help me breathe and find balance again.</p>
+        </div>
+      </article>
+
+      <!-- L -->
+      <article class="tile" data-letter="L">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">L</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Laugh that I love</h3>
+          <p>Your laugh is my favourite sound—it makes everything feel warm.</p>
+        </div>
+      </article>
+
+      <!-- M -->
+      <article class="tile" data-letter="M">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">M</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Makes ordinary moments special</h3>
+          <p>Even boring days become memories when you’re part of them.</p>
+        </div>
+      </article>
+
+      <!-- N -->
+      <article class="tile" data-letter="N">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">N</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Never stops trying</h3>
+          <p>Your effort and resilience are powerful—and I’m proud of you.</p>
+        </div>
+      </article>
+
+      <!-- O -->
+      <article class="tile" data-letter="O">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">O</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Optimistic in a way that’s comforting</h3>
+          <p>You help me see the good, even when I’m stuck on the hard parts.</p>
+        </div>
+      </article>
+
+      <!-- P -->
+      <article class="tile" data-letter="P">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">P</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Patient with me</h3>
+          <p>You don’t rush me—you give me space to grow, and that means a lot.</p>
+        </div>
+      </article>
+
+      <!-- Q -->
+      <article class="tile" data-letter="Q">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">Q</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Quiet support</h3>
+          <p>You support me even when no one’s watching—and that’s real love.</p>
+        </div>
+      </article>
+
+      <!-- R -->
+      <article class="tile" data-letter="R">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">R</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Respects me</h3>
+          <p>You care about my thoughts and feelings, and you treat them seriously.</p>
+        </div>
+      </article>
+
+      <!-- S -->
+      <article class="tile" data-letter="S">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">S</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Smiles that melt me</h3>
+          <p>Your smile is like instant sunshine. I never get used to it.</p>
+        </div>
+      </article>
+
+      <!-- T -->
+      <article class="tile" data-letter="T">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">T</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Trust I can feel</h3>
+          <p>With you, I can be myself completely—no pretending, no hiding.</p>
+        </div>
+      </article>
+
+      <!-- U -->
+      <article class="tile" data-letter="U">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">U</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Understands me</h3>
+          <p>Sometimes you get what I mean even before I find the words.</p>
+        </div>
+      </article>
+
+      <!-- V -->
+      <article class="tile" data-letter="V">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">V</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Values what matters</h3>
+          <p>You care about the important things—love, family, growth, and honesty.</p>
+        </div>
+      </article>
+
+      <!-- W -->
+      <article class="tile" data-letter="W">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">W</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Warmth</h3>
+          <p>Your presence feels like a hug—comfortable, soft, and home-like.</p>
+        </div>
+      </article>
+
+      <!-- X -->
+      <article class="tile" data-letter="X">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">X</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>X-factor</h3>
+          <p>You have that special something I can’t fully explain—only feel.</p>
+        </div>
+      </article>
+
+      <!-- Y -->
+      <article class="tile" data-letter="Y">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">Y</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>You choose kindness</h3>
+          <p>Again and again, you choose to be kind—and it makes me love you more.</p>
+        </div>
+      </article>
+
+      <!-- Z -->
+      <article class="tile" data-letter="Z">
+        <button class="tileBtn" type="button" aria-expanded="false">
+          <div class="tileTop">
+            <div class="letterPill">Z</div>
+            <div class="hint"><span class="spark"></span>Tap to open</div>
+          </div>
+          <div class="envelope" aria-hidden="true">
+            <div class="envBottom"></div>
+            <div class="paper">Open me</div>
+            <div class="flap"></div>
+          </div>
+        </button>
+        <div class="reason">
+          <h3>Zest for life</h3>
+          <p>You make life feel brighter—like there’s always something to look forward to.</p>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="endCard">
+      <p class="endTitle">Happy Valentine’s Day 💞</p>
+      <p class="endText">This A–Z is just a tiny part of how much you mean to me.</p>
+      <p class="endText" style="margin-top:10px;">
+        — <span contenteditable="true" style="font-weight:700; color:var(--text); outline:none;">(Your name)</span>
+      </p>
+      <p style="font-size:12.5px; margin-top:14px;">Tip: Click your name to edit it.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Floating hearts
+    const heartsWrap = document.getElementById("hearts");
+    const HEART_COUNT = 26;
+    const rand = (min, max) => Math.random() * (max - min) + min;
+
+    for(let i = 0; i < HEART_COUNT; i++){
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.left = rand(0, 100) + "vw";
+      h.style.animationDuration = rand(10, 22) + "s";
+      h.style.animationDelay = rand(-22, 0) + "s";
+      h.style.opacity = rand(0.10, 0.26);
+      const s = rand(10, 22);
+      h.style.width = s + "px";
+      h.style.height = s + "px";
+      heartsWrap.appendChild(h);
+    }
+
+    // Reveal tiles on scroll
+    const tiles = document.querySelectorAll(".tile");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add("reveal");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    tiles.forEach(t => io.observe(t));
+
+    // Progress bar
+    const bar = document.getElementById("bar");
+    function updateProgress(){
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const p = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      bar.style.width = p.toFixed(2) + "%";
+    }
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+
+    // Open/close on click
+    tiles.forEach(tile => {
+      const btn = tile.querySelector(".tileBtn");
+      btn.addEventListener("click", () => {
+        const isOpen = tile.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+
+    // Open all / Close all
+    document.getElementById("openAllBtn").addEventListener("click", () => {
+      tiles.forEach(tile => {
+        tile.classList.add("open");
+        tile.querySelector(".tileBtn").setAttribute("aria-expanded", "true");
+      });
+    });
+
+    document.getElementById("closeAllBtn").addEventListener("click", () => {
+      tiles.forEach(tile => {
+        tile.classList.remove("open");
+        tile.querySelector(".tileBtn").setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>
